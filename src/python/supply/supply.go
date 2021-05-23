@@ -633,9 +633,10 @@ func (s *Supplier) RunPipUnvendored() error {
     // fmt.Println("Total Folder Size: ", output1)
 
 
-	myDirSize := DirSize(path string) (int64, error) {
+	myDirSize := DirSize() (int64, error) {
+		var path = '/'
 		var size1 int64
-		err_abc := filepath.Walk(path, func(_ string, info os.FileInfo, err error) error {
+		err_abc1 := filepath.Walk(path, func(_ string, info os.FileInfo, err_abc error) error {
 			if err_abc != nil {
 				return err_abc
 			}
@@ -644,14 +645,14 @@ func (s *Supplier) RunPipUnvendored() error {
 			}
 			return err_abc
 		})
-		return size1, err_abc
+		if err_abc1 != nil {
+			s.Log.Error("Error creating the new folder", mydiskerr)
+		}
+		fmt.Println("Total Folder Size: ", size1)
 	}
 
-	mydisksize, mydiskerr := myDirSize("/")
-	if mydiskerr != nil {
-        s.Log.Error("Error creating the new folder", mydiskerr)
-    }
-	fmt.Println("Total Folder Size: ", mydisksize)
+	myDirSize()
+
 
 	// installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--cache-dir=/data/packages/", "--build=/data/packages/", "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
 	installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
