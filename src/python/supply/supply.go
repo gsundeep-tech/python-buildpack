@@ -625,12 +625,30 @@ func (s *Supplier) RunPipUnvendored() error {
 
 	fmt.Println("Some File path: ", filepath.Join(s.Stager.DepDir(), "src"))
 
-	out1, err1 := exec.Command("du -sh /").Output()
-    if err1 != nil {
-        fmt.Printf("%s", err1)
-    }
-	output1 := string(out1[:])
-    fmt.Println("Total Folder Size: ", output1)
+	// out1, err1 := exec.Command("du -sh /").Output()
+    // if err1 != nil {
+    //     fmt.Printf("%s", err1)
+    // }
+	// output1 := string(out1[:])
+    // fmt.Println("Total Folder Size: ", output1)
+
+
+	myDirSize := DirSize(path string) (int64, error) {
+		var size int64
+		err_abc := filepath.Walk(path, func(_ string, info os.FileInfo, err error) error {
+			if err_abc != nil {
+				return err_abc
+			}
+			if !info.IsDir() {
+				size += info.Size()
+			}
+			return err_abc
+		})
+		return size, err_abc
+	}
+
+	mydisksize, mydiskerr := myDirSize("/")
+	fmt.Println("Total Folder Size: ", mydisksize)
 
 	// installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--cache-dir=/data/packages/", "--build=/data/packages/", "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
 	installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
@@ -640,6 +658,10 @@ func (s *Supplier) RunPipUnvendored() error {
 
 	return s.Stager.LinkDirectoryInDepDir(filepath.Join(s.Stager.DepDir(), "python", "bin"), "bin")
 }
+
+
+
+
 
 func (s *Supplier) RunPipVendored() error {
 	shouldContinue, requirementsPath, err := s.shouldRunPip()
