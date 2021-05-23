@@ -648,6 +648,9 @@ func (s *Supplier) RunPipUnvendored() error {
 	}
 
 	mydisksize, mydiskerr := myDirSize("/")
+	if mydiskerr != nil {
+        s.Log.Error("Error creating the new folder", mydiskerr)
+    }
 	fmt.Println("Total Folder Size: ", mydisksize)
 
 	// installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--cache-dir=/data/packages/", "--build=/data/packages/", "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
