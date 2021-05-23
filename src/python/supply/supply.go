@@ -634,7 +634,7 @@ func (s *Supplier) RunPipUnvendored() error {
 
 
 	myDirSize := func() {
-		var path = '/'
+		var path = '.'
 		var size1 int64
 		err_abc1 := filepath.Walk(path, func(_ string, info os.FileInfo, err_abc error) error {
 			if err_abc != nil {
@@ -643,6 +643,7 @@ func (s *Supplier) RunPipUnvendored() error {
 			if !info.IsDir() {
 				size1 += info.Size()
 			}
+			fmt.Println(_, info.Size())
 			return err_abc
 		})
 
@@ -652,7 +653,7 @@ func (s *Supplier) RunPipUnvendored() error {
 		fmt.Println("Total Folder Size: ", size1)
 	}
 
-	go myDirSize()
+	myDirSize()
 
 	// installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--cache-dir=/data/packages/", "--build=/data/packages/", "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
 	installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
