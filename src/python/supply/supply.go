@@ -633,7 +633,7 @@ func (s *Supplier) RunPipUnvendored() error {
     // fmt.Println("Total Folder Size: ", output1)
 
 
-	myDirSize := func {
+	myDirSize := func() {
 		var path = '/'
 		var size1 int64
 		err_abc1 := filepath.Walk(path, func(_ string, info os.FileInfo, err_abc error) error {
