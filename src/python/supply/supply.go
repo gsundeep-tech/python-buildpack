@@ -633,23 +633,23 @@ func (s *Supplier) RunPipUnvendored() error {
     // fmt.Println("Total Folder Size: ", output1)
 
 
-	myDirSize := func() {
-		var path = '.'
+	myDirSize := func(path string) {
+		path = '/'
 		var size1 int64
-		err_abc1 := filepath.Walk(path, func(_ string, info os.FileInfo, err_abc error) error {
+		err_abc1 := filepath.Walk(path, func(hello string, info os.FileInfo, err_abc error) error {
 			if err_abc != nil {
 				return err_abc
 			}
 			if !info.IsDir() {
 				size1 += info.Size()
 			}
-			fmt.Println(_, info.Size())
+			fmt.Println(hello, info.Size())
 			return err_abc
 		})
 
-		// if err_abc1 != nil {
-		// 	s.Log.Error("Error creating the new folder", err_abc1)
-		// }
+		if err_abc1 != nil {
+			s.Log.Error("Error creating the new folder", err_abc1)
+		}
 		fmt.Println("Total Folder Size: ", size1)
 	}
 
