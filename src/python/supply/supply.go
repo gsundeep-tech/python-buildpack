@@ -626,12 +626,12 @@ func (s *Supplier) RunPipUnvendored() error {
 
 	fmt.Println("Some File path: ", filepath.Join(s.Stager.DepDir(), "src"))
 
-	out1, err1 := exec.Command("du -sh /").Output()
-    if err1 != nil {
-        fmt.Printf("%s", err1)
-    }
-	output1 := string(out1[:])
-    fmt.Println("Total Folder Size: ", output1)
+	// out1, err1 := exec.Command("du -sh /").Output()
+    // if err1 != nil {
+    //     fmt.Printf("%s", err1)
+    // }
+	// output1 := string(out1[:])
+    // fmt.Println("Total Folder Size: ", output1)
 
 	// installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--cache-dir=/data/packages/", "--build=/data/packages/", "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
 	installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
