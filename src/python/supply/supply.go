@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"os/exec"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -625,7 +626,7 @@ func (s *Supplier) RunPipUnvendored() error {
 
 	fmt.Println("Some File path: ", filepath.Join(s.Stager.DepDir(), "src"))
 
-	out1, err1 := os.exec.Command("du -sh /").Output()
+	out1, err1 := exec.Command("du -sh /").Output()
     if err1 != nil {
         fmt.Printf("%s", err1)
     }
