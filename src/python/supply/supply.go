@@ -614,7 +614,7 @@ func (s *Supplier) RunPipUnvendored() error {
 		return err
 	}
 
-	err := os.MkdirAll("/data/packages", 0755)
+	err = os.MkdirAll("/data/packages", 0755)
     if err != nil {
         s.Log.Error("Error creating the new folder", err)
     }
