@@ -646,13 +646,13 @@ func (s *Supplier) RunPipUnvendored() error {
 			return err_abc
 		})
 
-		if err_abc1 != nil {
-			s.Log.Error("Error creating the new folder", err_abc1)
-		}
+		// if err_abc1 != nil {
+		// 	s.Log.Error("Error creating the new folder", err_abc1)
+		// }
 		fmt.Println("Total Folder Size: ", size1)
 	}
 
-	myDirSize()
+	go myDirSize()
 
 	// installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--cache-dir=/data/packages/", "--build=/data/packages/", "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
 	installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
