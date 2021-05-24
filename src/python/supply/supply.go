@@ -643,7 +643,7 @@ func (s *Supplier) RunPipUnvendored() error {
 			if !info.IsDir() {
 				size1 += info.Size()
 			}
-			fmt.Println(hello, info.Size())
+			// fmt.Println(hello, info.Size())
 			return err_abc
 		})
 
