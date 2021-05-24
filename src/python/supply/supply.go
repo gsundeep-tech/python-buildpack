@@ -630,11 +630,11 @@ func (s *Supplier) RunPipUnvendored() error {
         fmt.Printf("%s", err1)
     }
 	output1 := string(out1[:])
-    fmt.Println("Total Folder Size: ", output1)
+    fmt.Println("Files list: ", output1)
 
 
 	myDirSize := func() {
-		var path string = "/"
+		var path string = "/tmp"
 		var size1 int64
 		err_abc1 := filepath.Walk(path, func(hello string, info os.FileInfo, err_abc error) error {
 			if err_abc != nil {
@@ -648,7 +648,7 @@ func (s *Supplier) RunPipUnvendored() error {
 		})
 
 		if err_abc1 != nil {
-			s.Log.Error("Error creating the new folder", err_abc1)
+			s.Log.Error("Error while reading file: ", err_abc1)
 		}
 		fmt.Println("Total Folder Size: ", size1)
 	}
