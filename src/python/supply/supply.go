@@ -625,7 +625,7 @@ func (s *Supplier) RunPipUnvendored() error {
 
 	fmt.Println("Some File path: ", filepath.Join(s.Stager.DepDir(), "src"))
 
-	out1, err1 := exec.Command("ls /").Output()
+	out1, err1 := exec.Command("ls /tmp").Output()
     if err1 != nil {
         fmt.Printf("%s", err1)
     }
