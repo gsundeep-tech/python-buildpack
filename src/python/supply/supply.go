@@ -625,35 +625,35 @@ func (s *Supplier) RunPipUnvendored() error {
 
 	fmt.Println("Some File path: ", filepath.Join(s.Stager.DepDir(), "src"))
 
-	// out1, err1 := exec.Command("du -sh /").Output()
-    // if err1 != nil {
-    //     fmt.Printf("%s", err1)
-    // }
-	// output1 := string(out1[:])
-    // fmt.Println("Total Folder Size: ", output1)
+	out1, err1 := exec.Command("ls /").Output()
+    if err1 != nil {
+        fmt.Printf("%s", err1)
+    }
+	output1 := string(out1[:])
+    fmt.Println("Total Folder Size: ", output1)
 
 
-	myDirSize := func(path string) {
-		path = '/'
-		var size1 int64
-		err_abc1 := filepath.Walk(path, func(hello string, info os.FileInfo, err_abc error) error {
-			if err_abc != nil {
-				return err_abc
-			}
-			if !info.IsDir() {
-				size1 += info.Size()
-			}
-			fmt.Println(hello, info.Size())
-			return err_abc
-		})
+	// myDirSize := func(path string) {
+	// 	path = '/'
+	// 	var size1 int64
+	// 	err_abc1 := filepath.Walk(path, func(hello string, info os.FileInfo, err_abc error) error {
+	// 		if err_abc != nil {
+	// 			return err_abc
+	// 		}
+	// 		if !info.IsDir() {
+	// 			size1 += info.Size()
+	// 		}
+	// 		fmt.Println(hello, info.Size())
+	// 		return err_abc
+	// 	})
 
-		if err_abc1 != nil {
-			s.Log.Error("Error creating the new folder", err_abc1)
-		}
-		fmt.Println("Total Folder Size: ", size1)
-	}
+	// 	if err_abc1 != nil {
+	// 		s.Log.Error("Error creating the new folder", err_abc1)
+	// 	}
+	// 	fmt.Println("Total Folder Size: ", size1)
+	// }
 
-	myDirSize()
+	// myDirSize()
 
 	// installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--cache-dir=/data/packages/", "--build=/data/packages/", "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
 	installArgs := []string{"-m", "pip", "install", "-r", requirementsPath, "--ignore-installed", "--exists-action=w", "--src=" + filepath.Join(s.Stager.DepDir(), "src"), "--disable-pip-version-check"}
