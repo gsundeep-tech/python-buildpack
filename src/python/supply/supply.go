@@ -634,7 +634,7 @@ func (s *Supplier) RunPipUnvendored() error {
 
 
 	myDirSize := func() {
-		var path string = '/'
+		var path string = "/"
 		var size1 int64
 		err_abc1 := filepath.Walk(path, func(hello string, info os.FileInfo, err_abc error) error {
 			if err_abc != nil {
