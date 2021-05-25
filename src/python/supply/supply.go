@@ -621,7 +621,7 @@ func (s *Supplier) RunPipUnvendored() error {
 
 	// os.Setenv("TMPDIR", "/sundeep/")
 	fmt.Println("TMPDIR:", os.Getenv("PATH"))
-	// fmt.Println("Printing All Env values:", os.Environ())
+	fmt.Println("Printing All Env values:", os.Environ())
 
 	fmt.Println("Some File path: ", filepath.Join(s.Stager.DepDir(), "src"))
 
